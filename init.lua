@@ -1,8 +1,9 @@
 minetest.register_node("xblox:ocean_cobble", {
 	description = "Ocean Cobble",
 	tile_images = {"xblox_ocean_cobble.png"},
-	groups = {cracky=3, stone=2},
+	groups = {cracky=3},
 })
+
 minetest.register_craft({
 	output = '"xblox:ocean_cobble" 4',
 	recipe = {
@@ -13,6 +14,56 @@ minetest.register_craft({
 	replacements = {{ "bucket:bucket_water", "bucket:bucket_empty"}}
 })
 
+minetest.register_node("xblox:ocean_stone", {
+	description = "Ocean Stone",
+	tile_images = {"xblox_ocean_stone.png"},
+	groups = {cracky=3},
+	drop= "xblox:ocean_cobble",
+})
+
+minetest.register_craft({
+	output = '"xblox:ocean_stone" 4',
+	recipe = {
+		{'', 'default:stone', '', },
+		{'default:stone', 'bucket:bucket_water', 'default:stone', },
+		{'', 'default:stone', '', },
+		},
+	replacements = {{ "bucket:bucket_water", "bucket:bucket_empty"}}
+})
+
+	minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "xblox:ocean_stone",
+		wherein         = {"default:sand"},
+		clust_scarcity  = 16 * 16 * 16,
+		clust_size      = 5,
+		y_min           = -15,
+		y_max           = 0,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = -316,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+
+minetest.register_node("xblox:ocean_carved", {
+	description = "Carved Ocean Stone",
+	tile_images = {"xblox_ocean_carved.png"},
+	groups = {cracky=2},
+})
+
+minetest.register_craft({
+	output = '"xblox:ocean_carved" 4',
+	recipe = {
+		{'xblox:ocean_stone', 'xblox:ocean_stone',},
+		{'xblox:ocean_stone', 'xblox:ocean_stone',},
+		},
+})
+
 minetest.register_node("xblox:ocean_brick", {
 	description = "Ocean Brick",
 	tile_images = {"xblox_ocean_brick.png"},
@@ -21,11 +72,9 @@ minetest.register_node("xblox:ocean_brick", {
 minetest.register_craft({
 	output = '"xblox:ocean_brick" 4',
 	recipe = {
-		{'xblox:ocean_cobble', 'xblox:ocean_cobble', '', },
-		{'xblox:ocean_cobble', 'xblox:ocean_cobble', '', },
-		{'', '', '', },
+		{'xblox:ocean_cobble', 'xblox:ocean_cobble',},
+		{'xblox:ocean_cobble', 'xblox:ocean_cobble',},
 		},
-		replacements = {{ "bucket:bucket_water", "bucket:bucket_empty"}}
 })
 
 minetest.register_node("xblox:compacted_obsidian", {
@@ -40,7 +89,6 @@ minetest.register_craft({
 		{'default:obsidian', 'default:cobble', 'default:obsidian', },
 		{'', 'default:obsidian', '', },
 		},
-		replacements = {{ "bucket:bucket_water", "bucket:bucket_empty"}}
 })
 
 minetest.register_node("xblox:plaster", {
@@ -85,11 +133,11 @@ minetest.register_craft({
 		}
 })
 
-minetest.register_node("xblox:ocean_glass", {
-    description = "Ocean Light Box",
+minetest.register_node("xblox:sea_lantern", {
+    description = "Sea Lantern",
     drawtype = "glasslike",
 	light_source = 30,
-    tiles = {"xblox_glass.png"},
+    tiles = {"xblox_lantern.png"},
     paramtype = "light",
     is_ground_content = true,
     sunlight_propagates = true,
@@ -98,7 +146,7 @@ minetest.register_node("xblox:ocean_glass", {
 })
 
 minetest.register_craft({
-	output = '"xblox:ocean_glass" 4',
+	output = '"xblox:sea_lantern" 4',
 	recipe = {
 		{'default:torch', 'default:glass', 'default:torch', },
 		{'default:glass', 'bucket:bucket_water', 'default:glass', },
@@ -133,7 +181,7 @@ minetest.register_craft({
 })
 
 minetest.register_node("xblox:sand_cobble", {
-	description = "Sand Cobblestone",
+	description = "Sandy Cobblestone",
 	tile_images = {"xblox_sandcobble.png"},
 	groups = {cracky=1},
 })
